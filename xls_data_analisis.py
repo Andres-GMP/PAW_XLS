@@ -4,9 +4,8 @@ https://xlrd.readthedocs.io/en/latest/genindex.html
 '''
 import xlrd
 
-
-NameBook = 'pagina.xls'
-book = xlrd.open_workbook(NameBook)
+NameBook = '/home/Piztecho/mysite/'
+book = xlrd.open_workbook(NameBook+"pagina.xls")
 number_sheets = book.nsheets  # Numero de hojas que tiene el libro de excel
 
 '''
@@ -17,28 +16,28 @@ method to return column id and return id_index
 # TODO: Error al agregar hoja de por medio.
 
 def num_hojas(file):
-    book = xlrd.open_workbook(file)
+    book = xlrd.open_workbook(NameBook+file)
     number_sheets = book.nsheets  # Numero de hojas que tiene el libro de excel
     return number_sheets
 
 
 def filas_column(file, page):
-    book = xlrd.open_workbook(file)
+    book = xlrd.open_workbook(NameBook+file)
     return book.sheet_by_index(page).nrows, book.sheet_by_index(page).ncols
 
 
 def cell_info(file, page, rowX, colY):
-    book = xlrd.open_workbook(file)
+    book = xlrd.open_workbook(NameBook+file)
     return book.sheet_by_index(page).cell_value(rowX, colY)
 
 
 def col_info(file, page, col):
-    book = xlrd.open_workbook(file)
+    book = xlrd.open_workbook(NameBook+file)
     return book.sheet_by_index(page).col_values(col)
 
 
 def id_find_xls(file, page, id):
-    book = xlrd.open_workbook(file)
+    book = xlrd.open_workbook(NameBook+file)
     try:
         sheet = book.sheet_by_index(page)  # load 0 page
 
@@ -55,7 +54,7 @@ def id_find_xls(file, page, id):
 
 
 def show_cols(file, page, cols):
-    book = xlrd.open_workbook(file)
+    book = xlrd.open_workbook(NameBook+file)
     sheet = book.sheet_by_index(page)
     index_cols = [int(col) for col in cols.split(',')]
     cols_value = []
@@ -66,7 +65,7 @@ def show_cols(file, page, cols):
 
 
 def matriz_sheet(file, page):
-    book = xlrd.open_workbook(file)
+    book = xlrd.open_workbook(NameBook+file)
     sheet = book.sheet_by_index(page)
     return [sheet.row_values(row) for row in range(sheet.nrows)]
 
