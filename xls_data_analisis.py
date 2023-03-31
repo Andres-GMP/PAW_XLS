@@ -4,7 +4,8 @@ https://xlrd.readthedocs.io/en/latest/genindex.html
 '''
 import xlrd
 
-NameBook = '/home/Piztecho/mysite/'
+# NameBook = '/home/Piztecho/mysite/'
+NameBook = ''
 book = xlrd.open_workbook(NameBook+"pagina.xls")
 number_sheets = book.nsheets  # Numero de hojas que tiene el libro de excel
 
