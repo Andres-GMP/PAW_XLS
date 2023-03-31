@@ -1,10 +1,18 @@
 # importanción del modulo de flask la clase flask
 import xls_data_analisis as excel
 
-from flask import Flask, jsonify
+from flask import (Flask, jsonify, render_template)
 
 
 app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return render_template('index.html')
+
+@app.route("/about")
+def about():
+    return "que onda"
 
 
 @app.route("/numero_de_hoja/<file>")
