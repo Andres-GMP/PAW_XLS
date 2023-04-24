@@ -3,18 +3,33 @@ Library_xlrd documentation IS DEPRECATED
 https://xlrd.readthedocs.io/en/latest/genindex.html
 '''
 import xlrd
-
-# NameBook = '/home/Piztecho/mysite/'
-NameBook = ''
-book = xlrd.open_workbook(NameBook+"pagina.xls")
-number_sheets = book.nsheets  # Numero de hojas que tiene el libro de excel
-
-'''
-method to return column id and return id_index
-'''
+from xlutils.copy import copy 
 
 
 # TODO: Error al agregar hoja de por medio.
+
+# Use methods in flask_app.py
+# -num_hojas()
+# -filas_column()
+# -cell_info()
+# -col_info()
+# -id_find_xls()
+# -show_cols()
+# -matriz_sheet()
+
+NameBook = '/home/Piztecho/mysite/'
+# NameBook = ''
+workbook = 'pagina.xls'
+book = xlrd.open_workbook(NameBook+workbook, formatting_info=True)
+number_sheets = book.nsheets  # Numero de hojas que tiene el libro de excel
+
+def edit_cell(num_sheet, rowx, coly, new_value):    
+    book_editable = copy(book)
+    sheet = book_editable.get_sheet(num_sheet)
+    sheet.write(rowx,coly, new_value)
+    book_editable.save(workbook)
+
+# edit_cell(0, 0,0,'Prueba')
 
 def num_hojas(file):
     book = xlrd.open_workbook(NameBook+file)
@@ -134,5 +149,7 @@ def load_XLRD(id_search):
     except ValueError as e:
         print('Error type: ', type(e))
 
+# def validation( password):
+#     salt = 
 
 # load_XLRD(4)
