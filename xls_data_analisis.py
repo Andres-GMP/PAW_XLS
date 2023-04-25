@@ -3,7 +3,7 @@ Library_xlrd documentation IS DEPRECATED
 https://xlrd.readthedocs.io/en/latest/genindex.html
 '''
 import xlrd
-from xlutils.copy import copy 
+from xlutils.copy import copy
 
 
 # TODO: Error al agregar hoja de por medio.
@@ -17,43 +17,45 @@ from xlutils.copy import copy
 # -show_cols()
 # -matriz_sheet()
 
-NameBook = '/home/Piztecho/mysite/'
-# NameBook = ''
+# NAMEBOOK = '/home/Piztecho/mysite/'
+NAMEBOOK = ''
 workbook = 'pagina.xls'
-book = xlrd.open_workbook(NameBook+workbook, formatting_info=True)
+book = xlrd.open_workbook(NAMEBOOK+workbook, formatting_info=True)
 number_sheets = book.nsheets  # Numero de hojas que tiene el libro de excel
 
-def edit_cell(num_sheet, rowx, coly, new_value):    
+
+def edit_cell(num_sheet, rowx, coly, new_value):
     book_editable = copy(book)
     sheet = book_editable.get_sheet(num_sheet)
-    sheet.write(rowx,coly, new_value)
+    sheet.write(rowx, coly, new_value)
     book_editable.save(workbook)
 
 # edit_cell(0, 0,0,'Prueba')
 
+
 def num_hojas(file):
-    book = xlrd.open_workbook(NameBook+file)
+    book = xlrd.open_workbook(NAMEBOOK+file)
     number_sheets = book.nsheets  # Numero de hojas que tiene el libro de excel
     return number_sheets
 
 
 def filas_column(file, page):
-    book = xlrd.open_workbook(NameBook+file)
+    book = xlrd.open_workbook(NAMEBOOK+file)
     return book.sheet_by_index(page).nrows, book.sheet_by_index(page).ncols
 
 
 def cell_info(file, page, rowX, colY):
-    book = xlrd.open_workbook(NameBook+file)
+    book = xlrd.open_workbook(NAMEBOOK+file)
     return book.sheet_by_index(page).cell_value(rowX, colY)
 
 
 def col_info(file, page, col):
-    book = xlrd.open_workbook(NameBook+file)
+    book = xlrd.open_workbook(NAMEBOOK+file)
     return book.sheet_by_index(page).col_values(col)
 
 
 def id_find_xls(file, page, id):
-    book = xlrd.open_workbook(NameBook+file)
+    book = xlrd.open_workbook(NAMEBOOK+file)
     try:
         sheet = book.sheet_by_index(page)  # load 0 page
 
@@ -70,7 +72,7 @@ def id_find_xls(file, page, id):
 
 
 def show_cols(file, page, cols):
-    book = xlrd.open_workbook(NameBook+file)
+    book = xlrd.open_workbook(NAMEBOOK+file)
     sheet = book.sheet_by_index(page)
     index_cols = [int(col) for col in cols.split(',')]
     cols_value = []
@@ -81,7 +83,7 @@ def show_cols(file, page, cols):
 
 
 def matriz_sheet(file, page):
-    book = xlrd.open_workbook(NameBook+file)
+    book = xlrd.open_workbook(NAMEBOOK+file)
     sheet = book.sheet_by_index(page)
     return [sheet.row_values(row) for row in range(sheet.nrows)]
 
@@ -150,6 +152,6 @@ def load_XLRD(id_search):
         print('Error type: ', type(e))
 
 # def validation( password):
-#     salt = 
+#     salt =
 
 # load_XLRD(4)

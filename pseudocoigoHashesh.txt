@@ -1,0 +1,16 @@
+funcion hashear_contraseña(contraseña):
+    salt = generar_salt_aleatorio()
+    contraseña_con_salt = concatenar(contraseña, salt)
+    valor_hash = aplicar_funcion_hash_criptografica(contraseña_con_salt)
+    almacenar_valor_hash_en_bd(valor_hash)
+    almacenar_salt_en_bd(salt)
+    
+funcion verificar_contraseña(contraseña):
+    salt = obtener_salt_de_bd()
+    contraseña_con_salt = concatenar(contraseña, salt)
+    valor_hash = aplicar_funcion_hash_criptografica(contraseña_con_salt)
+    valor_hash_en_bd = obtener_valor_hash_de_bd()
+    si valor_hash == valor_hash_en_bd:
+        return True
+    sino:
+        return False
